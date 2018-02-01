@@ -8,7 +8,7 @@ Using:</br>
 &emsp;Download zip, unzip it.</br>
 &emsp;Add carservice database using carservice.sql file located in db folder.</br>
 &emsp;Edit spring-config.xml in src/main/resources:</br>
-&emsp;&emsp;change dataSource properties(url, username and root on actual).</br>
+&emsp;&emsp;change dataSource properties(url, username and password on actual).</br>
 &emsp;Start project using Main class in by.service.project.app.Main.</br>
 &emsp;In browser: localhost:8080/CarService</br>
 </br>
