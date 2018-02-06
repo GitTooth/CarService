@@ -15,11 +15,7 @@
     </thead>
 
         <c:forEach items="${carList}" var="car">
-            <form:form action="/CarService/update" modelAttribute="car">
-            <div class="col-md-1" style="visibility: hidden">
-                <form:input cssClass="form-control" path="carId"
-                            value="${car.carId}"/>
-            </div>
+            <form:form action="/CarService/${car.carId}" modelAttribute="car" method="PUT">
             <tr>
                 <td>
                     <form:select multiple="single" path="mark.title" cssClass="btn btn-primary dropdown-toggle">
@@ -29,19 +25,25 @@
                     </form:select>
                 </td>
                 <td><form:input path="model" value="${car.model}" cssClass="form-control"/></td>
-                <td><form:input path="color" value="${car.color}" cssClass="form-control"/></td>
+                <td>
+                    <form:select multiple="single" path="colour.name" cssClass="btn btn-primary dropdown-toggle">
+                        <form:option value="${car.colour.name}" />
+                        <div class="dropdown-divider"></div>
+                        <form:options items="${colourList}"/>
+                    </form:select>
+                </td>
                 <td><form:input path="releaseDate" value="${car.dateString}" cssClass="form-control"/></td>
                 <td><form:input path="country" value="${car.country}" cssClass="form-control"/></td>
                 <td><button class="btn btn-warning">Edit</button></td>
             </form:form>
             <td>
-                <form:form action="/CarService/${car.carId}/delete" modelAttribute="car">
+                <form:form action="/CarService/${car.carId}" modelAttribute="car" method="DELETE">
                     <button class="btn btn-danger">Delete</button>
                 </form:form>
             </td>
             </tr>
         </c:forEach>
-    <form:form action="/CarService/update" modelAttribute="car">
+    <form:form method="POST" modelAttribute="car">
         <tr>
             <td>
                 <form:select multiple="single" path="mark.title" cssClass="btn btn-primary dropdown-toggle">
@@ -54,8 +56,10 @@
                 <form:errors path="model" cssClass="error"/>
             </td>
             <td>
-                <form:input path="color" cssClass="form-control"/>
-                <form:errors path="color" cssClass="error"/>
+                <form:select multiple="single" path="colour.name" cssClass="btn btn-primary dropdown-toggle">
+                    <form:options items="${colourList}"/>
+                </form:select>
+                <form:errors path="colour" cssClass="error"/>
             </td>
             <td>
                 <form:input path="releaseDate" cssClass="form-control" placeholder="dd/MM/yyyy"/>

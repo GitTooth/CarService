@@ -1,5 +1,7 @@
 package by.service.project.entities;
 
+import by.service.project.app.Constants;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,43 +15,42 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "carId")
+    @Column(name = "car_id")
     private int carId;
 
     @Column(name = "model")
-    @NotNull(message="is required")
-    @Size(min=1, max=45, message="is required")
+    @NotNull(message = Constants.REQUIRED)
+    @Size(min = 1, max = 45, message = Constants.REQUIRED)
     private String model;
 
-    @Column(name = "color")
-    @NotNull(message="is required")
-    @Size(min=1, max=45, message="is required")
-    private String color;
-
-    @Column(name = "releaseDate")
-    @NotNull(message="is required")
+    @Column(name = "release_date")
+    @NotNull(message = Constants.REQUIRED)
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
 
     @Column(name = "country")
-    @NotNull(message="is required")
-    @Size(min=1, max=45, message="is required")
+    @NotNull(message = Constants.REQUIRED)
+    @Size(min = 1, max = 45, message = Constants.REQUIRED)
     private String country;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name="mark")
+    @JoinColumn(name = "mark")
     private Mark mark;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name = "colour")
+    private Colour colour;
 
     public Car() {
     }
 
-    public Car(int carId, Mark mark, String model, String color, Date releaseDate, String country) {
-        this.carId = carId;
-        this.mark = mark;
+    public Car(int id, String model, Date releaseDate, String country, Mark mark, Colour colour) {
+        this.carId = id;
         this.model = model;
-        this.color = color;
         this.releaseDate = releaseDate;
         this.country = country;
+        this.mark = mark;
+        this.colour = colour;
     }
 
     public int getCarId() {
@@ -68,12 +69,12 @@ public class Car {
         this.model = model;
     }
 
-    public String getColor() {
-        return color;
+    public Colour getColour() {
+        return colour;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setColour(Colour clolour) {
+        this.colour = clolour;
     }
 
     public Date getReleaseDate() {
@@ -101,12 +102,24 @@ public class Car {
     }
 
     public String getDateString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        if(releaseDate != null) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.PATTERN_DATE);
+        if (releaseDate != null) {
             return dateFormat.format(releaseDate);
-        }else {
+        } else {
             return dateFormat.format(new Date());
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carId=" + carId +
+                ", model='" + model + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", country='" + country + '\'' +
+                ", mark=" + mark +
+                ", colour=" + colour +
+                '}';
     }
 
     @Override
@@ -116,27 +129,15 @@ public class Car {
         Car car = (Car) o;
         return carId == car.carId &&
                 Objects.equals(model, car.model) &&
-                Objects.equals(color, car.color) &&
                 Objects.equals(releaseDate, car.releaseDate) &&
                 Objects.equals(country, car.country) &&
-                Objects.equals(mark, car.mark);
+                Objects.equals(mark, car.mark) &&
+                Objects.equals(colour, car.colour);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(carId, model, color, releaseDate, country, mark);
-    }
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "carId=" + carId +
-                ", model='" + model + '\'' +
-                ", color='" + color + '\'' +
-                ", releaseDate=" + releaseDate +
-                ", country='" + country + '\'' +
-                ", mark=" + mark +
-                '}';
+        return Objects.hash(carId, model, releaseDate, country, mark, colour);
     }
 }

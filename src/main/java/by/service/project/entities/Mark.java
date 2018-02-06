@@ -1,5 +1,7 @@
 package by.service.project.entities;
 
+import by.service.project.app.Constants;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,12 +14,12 @@ public class Mark {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "markId")
+    @Column(name = "mark_id")
     private int markId;
 
     @Column(name = "title")
-    @NotNull(message="is required")
-    @Size(min=1, max=45, message="is required")
+    @NotNull(message = Constants.REQUIRED)
+    @Size(min = 1, max = 45, message = Constants.REQUIRED)
     private String title;
 
     @OneToMany(mappedBy = "mark", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})

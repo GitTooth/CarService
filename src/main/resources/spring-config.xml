@@ -10,7 +10,7 @@
     <!--@Transaction annotation support -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <!--Обеспечивает работу с транзакциями в Spring -->
+    <!--Transaction support Spring -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="emf"/>
     </bean>
@@ -18,21 +18,21 @@
     <!-- EntityManagerFactory -->
     <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <!--Поставщик данных - hibernate-->
+        <!--Hibernate-->
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
         </property>
-        <!--поиск сущностей в этом пакете-->
+        <!--Scan for entities-->
         <property name="packagesToScan"
                   value="by.service.project"/>
     </bean>
 
-    <!-- Datasource. Источник данных - база MySQL -->
+    <!-- Datasource-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://127.0.0.1:2016/carservice?characterEnc‌​oding=UTF-8" />
         <property name="username" value="root" />
-        <property name="password" value="" />
+        <property name="password" value="1234" />
     </bean>
 
     <!--Activates various annotations to be detected in bean classes: Spring's @Required and @Autowired and so on-->

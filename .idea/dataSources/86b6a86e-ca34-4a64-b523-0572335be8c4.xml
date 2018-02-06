@@ -982,67 +982,88 @@
     <table id="250" parent="3" name="cars">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="251" parent="3" name="marks">
+    <table id="251" parent="3" name="colours">
       <Engine>InnoDB</Engine>
     </table>
-    <column id="252" parent="250" name="CarID">
+    <table id="252" parent="3" name="marks">
+      <Engine>InnoDB</Engine>
+    </table>
+    <column id="253" parent="250" name="car_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="253" parent="250" name="Mark">
+    <column id="254" parent="250" name="mark">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="250" name="Model">
+    <column id="255" parent="250" name="model">
       <Position>3</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="250" name="Color">
+    <column id="256" parent="250" name="colour">
       <Position>4</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="250" name="ReleaseDate">
+    <column id="257" parent="250" name="release_date">
       <Position>5</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="250" name="Country">
+    <column id="258" parent="250" name="country">
       <Position>6</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="258" parent="250" name="PRIMARY">
+    <key id="259" parent="250" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>CarID</ColNames>
+      <ColNames>car_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="259" parent="251" name="MarkID">
+    <column id="260" parent="251" name="colour_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="251" name="Title">
+    <column id="261" parent="251" name="name">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="261" parent="251" name="PRIMARY">
+    <key id="262" parent="251" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>MarkID</ColNames>
+      <ColNames>colour_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="263" parent="252" name="mark_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="264" parent="252" name="title">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="265" parent="252" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>mark_id</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>
